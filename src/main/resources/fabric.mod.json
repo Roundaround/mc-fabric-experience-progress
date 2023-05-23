@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "experienceprogress",
+  "version": "${version}",
+  "name": "Experience Progress",
+  "description": "Show current experience level and amount needed to level up as numbers over the XP bar.\n${library}",
+  "authors": [
+    "Roundaround"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/experience-progress",
+    "sources": "https://github.com/Roundaround/mc-fabric-experience-progress",
+    "issues": "https://github.com/Roundaround/mc-fabric-experience-progress/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/experienceprogress/icon.png",
+  "environment": "client",
+  "mixins": [
+    "experienceprogress.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "1.19.x",
+    "java": ">=17"
+  }
+}

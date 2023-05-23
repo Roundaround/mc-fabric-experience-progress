@@ -28,7 +28,7 @@ public class KeyboardMixin {
     }
   }
 
-  @Inject(method = "processF3", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/ChatHud;addMessage(Lnet/minecraft/text/Text;)V", shift = At.Shift.AFTER, ordinal = 13))
+  @Inject(method = "processF3", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/ChatHud;addMessage(Lnet/minecraft/text/Text;)V", shift = At.Shift.AFTER, ordinal = 11))
   private void onDebugHelp(int key, CallbackInfoReturnable<Boolean> info) {
     ChatHud chatHud = this.client.inGameHud.getChatHud();
     chatHud.addMessage(Text.translatable("experienceprogress.debug.help"));

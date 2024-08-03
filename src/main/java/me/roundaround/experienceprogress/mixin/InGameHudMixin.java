@@ -20,9 +20,6 @@ public abstract class InGameHudMixin {
   private MinecraftClient client;
 
   @Shadow
-  private int scaledHeight;
-
-  @Shadow
   public abstract TextRenderer getTextRenderer();
 
   @Inject(at = @At("RETURN"), method = "renderExperienceBar")
@@ -42,7 +39,7 @@ public abstract class InGameHudMixin {
 
     int x1 = x - 2;
     int x2 = x + 182 + 2;
-    int y = this.scaledHeight - 32 + 4;
+    int y = client.getWindow().getScaledHeight() - 32 + 4;
 
     this.renderNumber(drawContext, String.valueOf(currentExperience), x1, y, true);
     this.renderNumber(drawContext, String.valueOf(experienceNeeded), x2, y, false);

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -18,9 +19,6 @@ public abstract class InGameHudMixin {
   @Shadow
   @Final
   private MinecraftClient client;
-
-  @Shadow
-  private int scaledHeight;
 
   @Shadow
   public abstract TextRenderer getTextRenderer();
@@ -42,18 +40,20 @@ public abstract class InGameHudMixin {
 
     int x1 = x - 2;
     int x2 = x + 182 + 2;
-    int y = this.scaledHeight - 32 + 4;
+    int y = this.client.getWindow().getScaledHeight() - 32 + 4;
 
     this.renderNumber(drawContext, String.valueOf(currentExperience), x1, y, true);
     this.renderNumber(drawContext, String.valueOf(experienceNeeded), x2, y, false);
   }
 
+  @Unique
   private void renderNumber(
-      DrawContext drawContext, String number, int x, int y, boolean rightAligned) {
-    int renderX = x + (rightAligned ? -this.getTextRenderer().getWidth(number) : 0);
-    int renderY = y + Math.round((5 - this.getTextRenderer().fontHeight) / 2f);
-
+      DrawContext drawContext, String number, int x, int y, boolean rightAligned
+  ) {
     TextRenderer textRenderer = this.getTextRenderer();
+    int renderX = x + (rightAligned ? -textRenderer.getWidth(number) : 0);
+    int renderY = y + Math.round((5 - textRenderer.fontHeight) / 2f);
+
     drawContext.drawText(textRenderer, number, renderX + 1, renderY, 0, false);
     drawContext.drawText(textRenderer, number, renderX - 1, renderY, 0, false);
     drawContext.drawText(textRenderer, number, renderX, renderY + 1, 0, false);

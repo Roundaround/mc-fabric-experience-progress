@@ -73,7 +73,7 @@ public abstract class InGameHudMixin {
       boolean rightAligned) {
     TextRenderer textRenderer = this.client.textRenderer;
     int renderX = x + (rightAligned ? -textRenderer.getWidth(number) : 0);
-    int renderY = y + Math.round((5 - textRenderer.fontHeight) / 2f);
+    int renderY = y + Math.round((5 - textRenderer.fontHeight + 2) / 2f);
 
     context.drawText(textRenderer, number, renderX + 1, renderY, Colors.BLACK, false);
     context.drawText(textRenderer, number, renderX - 1, renderY, Colors.BLACK, false);

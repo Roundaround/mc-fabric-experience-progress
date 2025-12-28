@@ -1,5 +1,5 @@
 {
-  "experienceprogress.debug.help": "F3 + X = Show experience progress",
+  "experienceprogress.keybind.toggle": "Show Experience Progress",
   "experienceprogress.on": "Experience progress: shown",
   "experienceprogress.off": "Experience progress: hidden"
 }

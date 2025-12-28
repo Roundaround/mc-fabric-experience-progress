@@ -28,24 +28,41 @@ public abstract class InGameHudMixin {
   @Final
   private MinecraftClient client;
 
-  @WrapOperation(method = "renderMainHud", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/bar/Bar;renderBar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V"))
+  @WrapOperation(
+      method = "renderMainHud",
+      at = @At(
+          value = "INVOKE",
+          target = "Lnet/minecraft/client/gui/hud/bar/Bar;renderBar(Lnet/minecraft/client/gui/DrawContext;" +
+                   "Lnet/minecraft/client/render/RenderTickCounter;)V"
+      )
+  )
   private void wrapRenderBar(
       Bar instance,
       DrawContext context,
       RenderTickCounter renderTickCounter,
       Operation<Void> original,
-      @Share("bar") LocalRef<Bar> barRef) {
+      @Share("bar") LocalRef<Bar> barRef
+  ) {
     barRef.set(instance);
     original.call(instance, context, renderTickCounter);
   }
 
-  @Inject(method = "renderMainHud", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/bar/Bar;drawExperienceLevel(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/font/TextRenderer;I)V"))
+  @Inject(
+      method = "renderMainHud",
+      at = @At(
+          value = "INVOKE",
+          target = "Lnet/minecraft/client/gui/hud/bar/Bar;drawExperienceLevel(Lnet/minecraft/client/gui/DrawContext;" +
+                   "Lnet/minecraft/client/font/TextRenderer;I)V"
+      )
+  )
   private void onDrawExperienceLevel(
       DrawContext context,
       RenderTickCounter tickCounter,
       CallbackInfo ci,
-      @Share("bar") LocalRef<Bar> barRef) {
-    if (!ExperienceProgressMod.enabled || this.client.player == null) {
+      @Share("bar") LocalRef<Bar> barRef
+  ) {
+    if (!this.client.debugHudEntryList.isEntryVisible(ExperienceProgressMod.DEBUG_HUD_ENTRY_IDENTIFIER) ||
+        this.client.player == null) {
       return;
     }
 
@@ -65,12 +82,7 @@ public abstract class InGameHudMixin {
   }
 
   @Unique
-  private void renderNumber(
-      DrawContext context,
-      String number,
-      int x,
-      int y,
-      boolean rightAligned) {
+  private void renderNumber(DrawContext context, String number, int x, int y, boolean rightAligned) {
     TextRenderer textRenderer = this.client.textRenderer;
     int renderX = x + (rightAligned ? -textRenderer.getWidth(number) : 0);
     int renderY = y + Math.round((5 - textRenderer.fontHeight + 2) / 2f);

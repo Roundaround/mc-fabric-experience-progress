@@ -1,31 +1,34 @@
 package me.roundaround.experienceprogress;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import me.roundaround.experienceprogress.generated.Constants;
 import me.roundaround.gradle.api.annotation.Entrypoint;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.gui.hud.debug.DebugHudEntries;
-import net.minecraft.client.gui.hud.debug.RendererDebugHudEntry;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.gui.components.debug.DebugEntryNoop;
+import net.minecraft.client.gui.components.debug.DebugScreenEntries;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 @Entrypoint(Entrypoint.CLIENT)
 public class ExperienceProgressMod implements ClientModInitializer {
-  public static final Identifier DEBUG_HUD_ENTRY_IDENTIFIER = Identifier.of(Constants.MOD_ID, "visibility");
+  public static final Identifier DEBUG_HUD_ENTRY_IDENTIFIER = Identifier.fromNamespaceAndPath(
+      Constants.MOD_ID,
+      "visibility"
+  );
 
-  public static KeyBinding toggleKeyBinding;
+  public static KeyMapping toggleKeyBinding;
 
   @Override
   public void onInitializeClient() {
-    DebugHudEntries.register(DEBUG_HUD_ENTRY_IDENTIFIER, new RendererDebugHudEntry());
+    DebugScreenEntries.register(DEBUG_HUD_ENTRY_IDENTIFIER, new DebugEntryNoop());
 
-    toggleKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+    toggleKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
         "experienceprogress.keybind.toggle",
-        InputUtil.Type.KEYSYM,
+        InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_X,
-        KeyBinding.Category.DEBUG
+        KeyMapping.Category.DEBUG
     ));
   }
 }

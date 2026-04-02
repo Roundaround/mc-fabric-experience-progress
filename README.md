@@ -1,10 +1,11 @@
 ![Experience Progress](https://imgur.com/OCLoYUN.png)
 
-![](https://img.shields.io/badge/Loader-Fabric-%23313e51?style=for-the-badge)
-![](https://img.shields.io/badge/MC-26.1--26.1.1%20|%201.21%20|%201.20%20|%201.19-%23313e51?style=for-the-badge)
-![](https://img.shields.io/badge/Side-Client-%23313e51?style=for-the-badge)
+![](https://img.shields.io/badge/Loader-Fabric-313e51?style=for-the-badge)
+![](https://img.shields.io/badge/MC-26.1--26.1.1%20|%201.21%20|%201.20%20|%201.19-313e51?style=for-the-badge)
+![](https://img.shields.io/badge/Side-Client-313e51?style=for-the-badge)
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/experience-progress?style=flat&logo=modrinth&color=00AF5C)](https://modrinth.com/mod/experience-progress)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1502612?style=flat&logo=curseforge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/experience-progress)
 [![GitHub Repo stars](https://img.shields.io/github/stars/Roundaround/mc-fabric-experience-progress?style=flat&logo=github)](https://github.com/Roundaround/mc-fabric-experience-progress)
 
 [![Support me on Ko-fi](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/donate/kofi-singular-alt_vector.svg)](https://ko-fi.com/roundaround)
